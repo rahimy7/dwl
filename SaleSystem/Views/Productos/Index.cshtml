@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Productos";
+}@using SaleSystem.Models
+@model List<productos>
+        <!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Gestionar Productos</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Productos</a></li>
+                    <li class="breadcrumb-item active">Gestionar</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cantidad</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Costo</th>
+                            <th>Precio</th>
+                            <th>Estatus</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var producto in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@producto.img" alt="Product 1" class="img-circle img-size-32 mr-2">
+                                </td>
+                                <td>@producto.cantidad</td>
+                                <td>@producto.codigo</td>
+                                <td>@producto.nombre</td>
+                                <td>@producto.costo</td>
+                                <td>@producto.precio</td>
+                                <td>@producto.status</td>
+                                <td class="project-actions text-center">
+                                    <a class="btn btn-primary btn-sm sendEdit" href="#" id="@producto.id">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="#">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Cantidad</th>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Costo</th>
+                                <th>Precio</th>
+                                <th>Estatus</th>
+                            </tr>
+                        </tfoot>*@
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+@section scripts{
+    <script>
+        $("#example1").DataTable();
+        $(document).ready(() => {
+            $('a.sendEdit').click(function () {
+                var form = $('<form method="post" action="Productos/Detalle"></form>').append('<input type="hidden" value="' + $(this)[0].id + '" name="id"/>');
+                $('body').append(form);
+                form.submit();
+            });
+        });
+    </script>
+}
