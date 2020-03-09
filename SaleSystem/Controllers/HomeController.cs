@@ -12,8 +12,8 @@ namespace SaleSystem.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index()
-       {
-            return VariablesGlobales.View(View(VariablesGlobales.LogUser),"Administrator");
+        {
+            return VariablesGlobales.View(View(VariablesGlobales.LogUser), "Administrator");
         }
     }
 }
