@@ -36,7 +36,6 @@ namespace SaleSystem
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-
             services.AddMvc();
             services.Add(new ServiceDescriptor(typeof(DataBase.Database), new DataBase.Database()));
 
